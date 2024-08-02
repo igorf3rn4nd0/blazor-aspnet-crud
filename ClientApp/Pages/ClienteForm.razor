@@ -1,0 +1,31 @@
+﻿@page "/Cliente"
+
+<PageTitle>Cliente</PageTitle>
+
+<h1>Novo Cliente</h1>
+
+<form class="row mt-1 g-3">
+  <div class="col-12">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="inputNome" class="form-label">Nome</label>
+    <input type="text" class="form-control" id="inputNome">
+  </div>
+  <div class="col-md-6">
+    <label for="inputCnpj" class="form-label">CNPJ</label>
+    <input type="cnpj" class="form-control" id="inputCnpj">
+  </div>
+  <div class="col-md-6">
+    <label for="inputDataFundacao" class="form-label">Data da Fundação</label>
+    <input type="date" class="form-control" id="inputDataFundacao">
+  </div>
+</form>
+<div class="row justify-content-end mt-3">
+  <div class="col-auto">
+    <button class="btn btn-primary round ">Salvar</button>
+  </div>
+</div>

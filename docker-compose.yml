@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  backend:
+    image: crud-backend
+    build:
+      context: ./Server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Database=gestao_contatos;Username=postgres;Password=2684ig
+
+  frontend:
+    image: crud-frontend
+    build:
+      context: ./ClientApp
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2684ig
+      - POSTGRES_DB=gestao_contatos
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
