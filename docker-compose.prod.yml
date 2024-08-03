@@ -1,22 +1,20 @@
-version: '3.4'
-
 services:
   backend:
     image: crud-backend
     build:
       context: ./Server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     ports:
       - "5000:80"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=db;Database=gestao_contatos;Username=postgres;Password=2684ig
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings:DefaultConnection=Host=db;Database=gestao_contatos;Username=postgres;Password=2684ig
 
   frontend:
     image: crud-frontend
     build:
       context: ./ClientApp
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     ports:
       - "5001:80"
 

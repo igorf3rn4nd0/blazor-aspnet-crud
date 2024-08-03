@@ -104,3 +104,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/Server/obj/Debug/net8.0/Server.pdb
 /home/igor/Projetos/blazor-aspnet-crud/Server/obj/Debug/net8.0/Server.genruntimeconfig.cache
 /home/igor/Projetos/blazor-aspnet-crud/Server/obj/Debug/net8.0/ref/Server.dll
+/home/igor/Projetos/blazor-aspnet-crud/Server/bin/Debug/net8.0/AutoMapper.dll
+/home/igor/Projetos/blazor-aspnet-crud/Server/bin/Debug/net8.0/SharedModels.dll
+/home/igor/Projetos/blazor-aspnet-crud/Server/bin/Debug/net8.0/SharedModels.pdb
+/home/igor/Projetos/blazor-aspnet-crud/Server/bin/Debug/net8.0/Newtonsoft.Json.dll

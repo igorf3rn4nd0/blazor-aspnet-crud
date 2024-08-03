@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApp", "ClientApp\Clie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csproj", "{C2AE5B18-2E71-47E4-8E94-0C6046DB4920}"
 EndProject
+Project("{4935d538-cc11-4086-9d94-ade9398c982b}") = "SharedModels", "SharedModels\SharedModels.csproj", "{4935d538-cc11-4086-9d94-ade9398c982b}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

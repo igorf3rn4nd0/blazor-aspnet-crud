@@ -1030,3 +1030,17 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/refint/ClientApp.dll
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.pdb
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ref/ClientApp.dll
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.pdb
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.wasm.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.pdb.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/AutoMapper.dll
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/SharedModels.dll
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/SharedModels.pdb
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/AutoMapper.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/SharedModels.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/myy1ae4iin.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/2nr7ipccvn.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/x8e5d800bi.gz

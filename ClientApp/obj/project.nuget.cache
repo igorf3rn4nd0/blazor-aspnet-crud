@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "L+qcDYd6wn4=",
+  "dgSpecHash": "rYWbUpw6lqk=",
   "success": true,
   "projectFilePath": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/ClientApp.csproj",
   "expectedPackageFiles": [
+    "/home/igor/.nuget/packages/automapper/13.0.0/automapper.13.0.0.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.aspnetcore.authorization/8.0.7/microsoft.aspnetcore.authorization.8.0.7.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.aspnetcore.components/8.0.7/microsoft.aspnetcore.components.8.0.7.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.aspnetcore.components.analyzers/8.0.7/microsoft.aspnetcore.components.analyzers.8.0.7.nupkg.sha512",
@@ -12,6 +13,7 @@
     "/home/igor/.nuget/packages/microsoft.aspnetcore.components.webassembly/8.0.7/microsoft.aspnetcore.components.webassembly.8.0.7.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.aspnetcore.components.webassembly.devserver/8.0.7/microsoft.aspnetcore.components.webassembly.devserver.8.0.7.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.aspnetcore.metadata/8.0.7/microsoft.aspnetcore.metadata.8.0.7.nupkg.sha512",
+    "/home/igor/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "/home/igor/.nuget/packages/microsoft.extensions.configuration.binder/8.0.2/microsoft.extensions.configuration.binder.8.0.2.nupkg.sha512",
