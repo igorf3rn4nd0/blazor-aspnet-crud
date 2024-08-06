@@ -46,14 +46,14 @@ ON DELETE CASCADE;
 
 ### Instruções para Iniciar o Projeto FE
 
-Rodar o comando abaixo no diretório blazor-aspnet-cru/ClientApp
+Rodar o comando abaixo no diretório blazor-aspnet-crud/ClientApp
 ```
 dotnet watch run
 ```
 
 ### Instruções para Iniciar o Projeto BE
 
-Rodar o comando abaixo no diretório blazor-aspnet-cru/Server
+Rodar o comando abaixo no diretório blazor-aspnet-crud/Server
 ```
 dotnet watch run
 ```
