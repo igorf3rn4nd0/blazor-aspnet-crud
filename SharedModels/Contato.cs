@@ -12,21 +12,21 @@ public class Contato
     [Column("id_cliente")]
     public int IdCliente { get; set; }
 
-    [Column("cli_nome")]
+    [Column("cont_nome")]
     [Required]
     [StringLength(100)]
     public string Nome { get; set; }
 
-    [Column("cli_email")]
+    [Column("cont_email")]
     [Required]
     [EmailAddress]
     public string Email { get; set; }
 
-    [Column("cli_telefone")]
+    [Column("cont_telefone")]
     [StringLength(20)]
     public string Telefone { get; set; }
 
-    [Column("cli_cargo")]
+    [Column("cont_cargo")]
     [StringLength(50)]
     public string Cargo { get; set; }
 

@@ -1,7 +1,8 @@
+using Microsoft.JSInterop;
+
 namespace ClientApp.Services;
 using System.Net.Http.Json;
 using SharedModels;
-
 public class ClienteService
 {
     private readonly HttpClient _httpClient;
@@ -11,49 +12,91 @@ public class ClienteService
         _httpClient = httpClient;
     }
 
-    public async Task<IEnumerable<ClienteDto>?> GetClientesAsync()
+    public async Task<List<ClienteDto>?> GetClientesAsync()
     {
         try
         {
             var response = await _httpClient.GetAsync("api/clientes");
             response.EnsureSuccessStatusCode();
-        
-            // Leitura e desserialização da resposta JSON diretamente em ClienteDto
-            return await response.Content.ReadFromJsonAsync<IEnumerable<ClienteDto>>();
+            return await response.Content.ReadFromJsonAsync<List<ClienteDto>>();
         }
         catch (HttpRequestException ex)
         {
-            // Log e tratamento de erros
-            Console.WriteLine($"Request error: {ex.Message}");
-            throw new ApplicationException("Server error: " + ex.Message);
+            throw new ApplicationException($"Request error: {ex.Message}", ex);
         }
         catch (Exception ex)
         {
-            // Log e tratamento de exceções inesperadas
-            Console.WriteLine($"Unexpected error: {ex.Message}");
-            throw;
+            throw new ApplicationException($"Unexpected error: {ex.Message}", ex);
         }
     }
 
-
     public async Task<ClienteDto?> GetClienteAsync(int id)
     {
-        return await _httpClient.GetFromJsonAsync<ClienteDto>($"api/clientes/{id}");
+        try
+        {
+            var response = await _httpClient.GetAsync($"api/clientes/{id}");
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<ClienteDto>();
+        }
+        catch (HttpRequestException ex)
+        {
+            throw new ApplicationException($"Request error: {ex.Message}", ex);
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"Unexpected error: {ex.Message}", ex);
+        }
     }
 
     public async Task<ClienteDto?> AddClienteAsync(ClienteDto clienteDto)
     {
-        var response = await _httpClient.PostAsJsonAsync("api/clientes", clienteDto);
-        return await response.Content.ReadFromJsonAsync<ClienteDto>();
+        try
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/clientes", clienteDto);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadFromJsonAsync<ClienteDto>();
+        }
+        catch (HttpRequestException ex)
+        {
+            throw new ApplicationException($"Request error: {ex.Message}", ex);
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"Unexpected error: {ex.Message}", ex);
+        }
     }
 
     public async Task UpdateClienteAsync(ClienteDto clienteDto)
     {
-        await _httpClient.PutAsJsonAsync($"api/clientes/{clienteDto.Id}", clienteDto);
+        try
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/clientes/{clienteDto.Id}", clienteDto);
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException ex)
+        {
+            throw new ApplicationException($"Request error: {ex.Message}", ex);
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"Unexpected error: {ex.Message}", ex);
+        }
     }
 
     public async Task DeleteClienteAsync(int id)
     {
-        await _httpClient.DeleteAsync($"api/clientes/{id}");
+        try
+        {
+            var response = await _httpClient.DeleteAsync($"api/clientes/{id}");
+            response.EnsureSuccessStatusCode();
+        }
+        catch (HttpRequestException ex)
+        {
+            throw new ApplicationException($"Request error: {ex.Message}", ex);
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"Unexpected error: {ex.Message}", ex);
+        }
     }
 }

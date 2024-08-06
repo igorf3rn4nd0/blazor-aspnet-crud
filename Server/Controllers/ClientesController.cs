@@ -27,19 +27,26 @@ namespace Server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<ClienteDto>> GetCliente(int id)
+        public async Task<IActionResult> GetCliente(int id)
         {
-            var clienteDto = await _clienteService.GetClienteByIdAsync(id);
-            if (clienteDto == null)
+            try
             {
-                _logger.LogWarning($"Cliente with id {id} not found.");
-                return NotFound();
+                var clienteDto = await _clienteService.GetClienteByIdAsync(id);
+                if (clienteDto == null)
+                {
+                    return NotFound(new { Message = $"Cliente com ID {id} não encontrado." });
+                }
+
+                return Ok(clienteDto);
             }
-            return Ok(clienteDto);
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Erro inesperado ao buscar cliente.", Detail = ex.Message });
+            }
         }
 
         [HttpPost]
-        public async Task<ActionResult<ClienteDto>> PostCliente([FromBody] ClienteDto clienteDto)
+        public async Task<ActionResult<ContatoDto>> PostCliente(ClienteDto clienteDto)
         {
             if (!ModelState.IsValid)
             {

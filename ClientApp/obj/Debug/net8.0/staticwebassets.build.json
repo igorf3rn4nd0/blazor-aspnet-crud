@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1ji+KhHvaU8JnR4oxnP6FN3luthabRiMGXveY4JeDig=",
+  "Hash": "k/fFEYc8pwgGjYOIRsypCBzwonU6kxOmk0HHmPMMjv8=",
   "Source": "ClientApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -16,6 +16,44 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "/home/igor/.nuget/packages/blazorinputmask/1.0.24/staticwebassets/imask.js",
+      "SourceId": "BlazorInputMask",
+      "SourceType": "Package",
+      "ContentRoot": "/home/igor/.nuget/packages/blazorinputmask/1.0.24/staticwebassets/",
+      "BasePath": "_content/BlazorInputMask",
+      "RelativePath": "imask.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/igor/.nuget/packages/blazorinputmask/1.0.24/staticwebassets/imask.js"
+    },
+    {
+      "Identity": "/home/igor/.nuget/packages/blazorinputmask/1.0.24/staticwebassets/main.js",
+      "SourceId": "BlazorInputMask",
+      "SourceType": "Package",
+      "ContentRoot": "/home/igor/.nuget/packages/blazorinputmask/1.0.24/staticwebassets/",
+      "BasePath": "_content/BlazorInputMask",
+      "RelativePath": "main.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/igor/.nuget/packages/blazorinputmask/1.0.24/staticwebassets/main.js"
+    },
     {
       "Identity": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm",
       "SourceId": "ClientApp",
@@ -72,6 +110,25 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/home/igor/.nuget/packages/microsoft.aspnetcore.components.webassembly/8.0.7/build/net8.0/blazor.webassembly.js"
+    },
+    {
+      "Identity": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/BlazorInputMask.wasm",
+      "SourceId": "ClientApp",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/BlazorInputMask.wasm",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "WasmResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/BlazorInputMask.wasm"
     },
     {
       "Identity": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/ClientApp.pdb",
@@ -6572,6 +6629,25 @@
       "OriginalItemSpec": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Web.wasm"
     },
     {
+      "Identity": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/mng9ocgp5x.gz",
+      "SourceId": "ClientApp",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/BlazorInputMask.wasm.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/BlazorInputMask.wasm",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/BlazorInputMask.wasm"
+    },
+    {
       "Identity": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/mpaosvl3jt.gz",
       "SourceId": "ClientApp",
       "SourceType": "Computed",
@@ -8052,6 +8128,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/sample-data/weather.json"
+    },
+    {
+      "Identity": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/wwwroot/script/customMasks.js",
+      "SourceId": "ClientApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/igor/Projetos/blazor-aspnet-crud/ClientApp/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "script/customMasks.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/script/customMasks.js"
     }
   ]
 }

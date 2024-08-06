@@ -1,24 +1,68 @@
 @using SharedModels;
 
-<div class="accordion" id="accordionExample">
-    @foreach (var contato in contatos){
-        <div class="accordion-item">
-            <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    @contato.Nome
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    @contato.Email
+<div class="accordion" id="accordionContainer">
+    @if (Contatos != null && Contatos.Any())
+    {
+    int index = 0;
+    foreach (var contato in Contatos)
+    {
+    var isExpanded = index == 0;
+    var buttonClass = isExpanded ? "" : "collapsed";
+    var ariaExpanded = isExpanded ? "true" : "false";
+    var collapseClass = isExpanded ? "show" : "";
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="heading@index">
+            <button class="accordion-button @buttonClass" type="button" data-bs-toggle="collapse" data-bs-target="#collapse@index" aria-expanded="@ariaExpanded" aria-controls="collapse@index">
+                @contato.Nome
+            </button>
+        </h2>
+        <div id="collapse@index" class="accordion-collapse collapse @collapseClass" aria-labelledby="heading@index" data-bs-parent="#accordionContainer">
+            <div class="accordion-body">
+                <p>
+                    <strong>Email:</strong> @contato.Email
+                </p>
+                <p>
+                    <strong>Telefone:</strong> @contato.Telefone
+                </p>
+                <p>
+                    <strong>Cargo:</strong> @contato.Cargo
+                </p>
+                <div class="row justify-content-end">
+                    <div class="col-auto">
+                        <i class="material-icons" style="cursor: pointer; color: var(--bs-secondary)" @onclick:preventDefault="true" @onclick="() => EditarContato(contato.Id)">edit</i>
+                    </div>
+                    <div class="col-auto">
+                        <i class="material-icons" style="cursor: pointer; color: red" @onclick:preventDefault="true" @onclick="() => ExcluirContato(contato.Id)">delete</i>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    index++;
+    }
+    }
+    else
+    {
+    <p>Nenhum contato disponível.</p>
     }
 </div>
 
 @code {
-    
     [Parameter]
-    public ICollection<ContatoDto> contatos { get; set; }
+    public List<ContatoDto> Contatos { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnExcluirContato { get; set; }
+    [Parameter]
+    public EventCallback<int> OnEditarContato { get; set; }
+
+    private async Task ExcluirContato(int contatoId)
+    {
+        await OnExcluirContato.InvokeAsync(contatoId);
+    }
+    private async Task EditarContato(int contatoId)
+    {
+        await OnEditarContato.InvokeAsync(contatoId);
+    }
 }

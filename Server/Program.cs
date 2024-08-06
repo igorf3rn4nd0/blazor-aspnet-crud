@@ -3,7 +3,7 @@ using Server.Data;
 using Server.Services;
 using Server.Repositories;
 using SharedModels;
-using Server.Infrastructure.Middleware;
+// using Server.Infrastructure.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
+// app.UseMiddleware<ErrorHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

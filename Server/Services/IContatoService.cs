@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using SharedModels;
 public interface IContatoService
 {
-    Task<IEnumerable<ContatoDto>> GetAllContatosAsync();
+    Task<IEnumerable<ContatoDto>> GetContatosByClienteIdAsync(int idCliente);
     Task<ContatoDto> GetContatoByIdAsync(int id);
     Task AddContatoAsync(ContatoDto contatoDto);
     Task UpdateContatoAsync(ContatoDto contatoDto);

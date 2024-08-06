@@ -1,3 +1,4 @@
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/blazor.boot.json
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/blazor.webassembly.js
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/ClientApp.pdb
@@ -40,6 +41,8 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/Microsoft.Win32.Registry.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/mscorlib.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/netstandard.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.pdb
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.AppContext.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Buffers.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Collections.Concurrent.wasm
@@ -220,6 +223,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Reflection.DispatchProxy.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Threading.Thread.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.IO.FileSystem.DriveInfo.wasm.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Net.Http.Json.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.IO.Compression.ZipFile.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Collections.wasm.gz
@@ -343,6 +347,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.IO.IsolatedStorage.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/Microsoft.AspNetCore.Metadata.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.IO.Compression.Brotli.wasm.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.InteropServices.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Security.Claims.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/Microsoft.Extensions.DependencyInjection.wasm.gz
@@ -395,6 +400,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.Serialization.Primitives.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Diagnostics.Debug.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Threading.Tasks.Dataflow.wasm.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.pdb.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Net.Mail.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.IO.wasm.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/System.Runtime.InteropServices.RuntimeInformation.wasm.gz
@@ -409,6 +415,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/ClientApp.staticwebassets.runtime.json
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/ClientApp.dll
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/ClientApp.pdb
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/AutoMapper.dll
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/Microsoft.AspNetCore.Authorization.dll
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/Microsoft.AspNetCore.Components.dll
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/Microsoft.AspNetCore.Components.Forms.dll
@@ -609,6 +616,8 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/icudt_CJK.dat
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/icudt_EFIGS.dat
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/icudt_no_CJK.dat
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/SharedModels.dll
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/SharedModels.pdb
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.csproj.AssemblyReference.cache
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.GeneratedMSBuildEditorConfig.editorconfig
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.AssemblyInfoInputs.cache
@@ -616,6 +625,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.csproj.CoreCompileInputs.cache
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.MvcApplicationPartsAssemblyInfo.cache
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.sourcelink.json
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/AutoMapper.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Authorization.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Components.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/Microsoft.AspNetCore.Components.Forms.wasm
@@ -807,6 +817,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/mscorlib.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/netstandard.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/System.Private.CoreLib.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/SharedModels.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/ClientApp.wasm
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/blazor.build.boot-extension.json
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/blazor.boot.json
@@ -822,6 +833,7 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/scopedcss/bundle/ClientApp.styles.css
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/scopedcss/projectbundle/ClientApp.bundle.scp.css
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/tdsfja6iii.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/myy1ae4iin.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/4bhvk3gszt.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/6pjiw9d63m.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/al5y16lblg.gz
@@ -1022,6 +1034,8 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/ckrzpmaj6u.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/0rw4a17ue4.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/0wke3r9k7u.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/2nr7ipccvn.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/x8e5d800bi.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/i85km01z1l.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/ayf2iga2h4.gz
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/zut9de47ww.gz
@@ -1030,17 +1044,8 @@
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/refint/ClientApp.dll
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ClientApp.pdb
 /home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/ref/ClientApp.dll
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.pdb
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.wasm
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.wasm.gz
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/AutoMapper.wasm.gz
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/SharedModels.pdb.gz
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/AutoMapper.dll
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/SharedModels.dll
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/SharedModels.pdb
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/AutoMapper.wasm
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/SharedModels.wasm
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/myy1ae4iin.gz
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/2nr7ipccvn.gz
-/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/x8e5d800bi.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/BlazorInputMask.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/wwwroot/_framework/BlazorInputMask.wasm.gz
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/bin/Debug/net8.0/BlazorInputMask.dll
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/webcil/BlazorInputMask.wasm
+/home/igor/Projetos/blazor-aspnet-crud/ClientApp/obj/Debug/net8.0/compressed/mng9ocgp5x.gz

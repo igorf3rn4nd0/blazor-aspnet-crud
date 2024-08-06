@@ -16,15 +16,20 @@ namespace Server.Controllers
         {
             _contatoService = contatoService;
         }
-
+        
         [HttpGet("clientes/{clienteId}/contatos")]
         public async Task<ActionResult<IEnumerable<ContatoDto>>> GetContatosByCliente(int clienteId)
         {
-            var contatoDtos = await _contatoService.GetAllContatosAsync();
+            var contatoDtos = await _contatoService.GetContatosByClienteIdAsync(clienteId);
+            if (contatoDtos == null || !contatoDtos.Any())
+            {
+                return NoContent();
+            }
+
             return Ok(contatoDtos);
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("contatos/{id}")]
         public async Task<ActionResult<ContatoDto>> GetContato(int id)
         {
             var contatoDto = await _contatoService.GetContatoByIdAsync(id);
@@ -38,6 +43,7 @@ namespace Server.Controllers
         [HttpPost("clientes/{clienteId}/contatos")]
         public async Task<ActionResult<ContatoDto>> PostContato(int clienteId, ContatoDto contatoDto)
         {
+            contatoDto.IdCliente = clienteId;
             await _contatoService.AddContatoAsync(contatoDto);
             return CreatedAtAction(nameof(GetContato), new { id = contatoDto.Id }, contatoDto);
         }
@@ -45,7 +51,7 @@ namespace Server.Controllers
         [HttpPut("contatos/{id}")]
         public async Task<IActionResult> PutContato(int id, ContatoDto contatoDto)
         {
-            if (id != contatoDto.Id)
+            if (id == 0)
             {
                 return BadRequest();
             }

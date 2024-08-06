@@ -1,74 +1,165 @@
-﻿@page "/Cliente"
-@using ClientApp.Components
+﻿@page "/Cliente/{id:int}"
+@using ClientApp.Services
 @using SharedModels
 @inject NavigationManager NavigationManager
+@inject ClienteService ClienteService
+@inject NotificationService NotificationService
+@inject IJSRuntime JS
 
 <PageTitle>Cliente</PageTitle>
 
-<div class="row justify-content-between align-items-center">
-  <div class="col-auto">
-    <div class="row align-items-center">
-      <div class="col-auto">
-        <button class="btn btn-link" @onclick="NavigateToList" style="border-radius: 20px;">
-          <i class="material-icons">arrow_back</i>
-        </button> 
-      </div>
-      <div class="col-auto">
-        <h1>Novo Cliente</h1>
+<EditForm Model="Cliente" OnValidSubmit="SaveCliente">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-auto">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <button class="btn btn-link" @onclick:preventDefault="true" @onclick="VoltarParaClientes" style="border-radius: 20px;">
+            <i class="material-icons">arrow_back</i>
+          </button>
+        </div>
+        <div class="col-auto">
+          @if (Id == 0)
+          {
+          <h1>Novo Cliente</h1>
+          }
+          else
+          {
+          <h1>Editar Cliente</h1>
+          }
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-auto">
-    <button class="btn btn-primary d-flex align-items-center" style="border-radius: 20px;">
-      <span class="d-none d-sm-inline me-2">Salvar </span>
-      <i class="material-icons">save</i>
-    </button>
-  </div>
-</div>
-
-<form class="row mt-1 g-3">
-  <div class="col-12">
-    <label for="inputNome" class="form-label">Nome</label>
-    <input type="text" class="form-control" id="inputNome">
-  </div>
-  <div class="col-md-6">
-    <label for="inputCnpj" class="form-label">CNPJ</label>
-    <input type="cnpj" class="form-control" id="inputCnpj">
-  </div>
-  <div class="col-md-6">
-    <label for="inputDataFundacao" class="form-label">Data da Fundação</label>
-    <input type="date" class="form-control" id="inputDataFundacao">
-  </div>
-  <div class="col-12">
-    <div class="form-check form-switch">
-      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-      <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary d-flex align-items-center" style="border-radius: 20px;">
+        @if (_loading)
+        {
+        <span class="d-none d-sm-inline me-2">Salvando </span>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        }
+        else
+        {
+        <span class="d-none d-sm-inline me-2">Salvar </span>
+        <i class="material-icons">save</i>
+        }
+      </button>
     </div>
   </div>
-  @if (contatos.Any()) {
+  <DataAnnotationsValidator></DataAnnotationsValidator>
+  <div class="row mt-1 g-3">
     <div class="col-12">
-      <ListaContatos contatos="contatos"/>
+      <label for="inputNome" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="inputNome" @bind="Cliente.Nome">
+      <ValidationMessage For="() => Cliente.Nome"></ValidationMessage>
     </div>
-  }
-</form>
-
+    <div class="col-md-6">
+      <label for="inputCnpj" class="form-label">CNPJ</label>
+      <input type="text" @ref="InputCnpjRef" class="form-control" id="inputCnpj" @bind="Cliente.Cnpj">
+      <ValidationMessage For="() => Cliente.Cnpj"></ValidationMessage>
+    </div>
+    <div class="col-md-6">
+      <label for="inputDataFundacao" class="form-label">Data da Fundação</label>
+      <input type="date" class="form-control" id="inputDataFundacao" @bind="Cliente.DataFundacao">
+      <ValidationMessage For="() => Cliente.DataFundacao"></ValidationMessage>
+    </div>
+    <div class="col-12">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" @bind="Cliente.Ativo">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Ativo</label>
+      </div>
+    </div>
+  </div>
+</EditForm>
 @code {
   [Parameter]
-  // public string Data { get; set; }
-  public ClienteDto Cliente { get; set; }
-
-  public ICollection<ContatoDto> contatos { get; set; }
-  
-  void NavigateToList() {
-    NavigationManager.NavigateTo("/Clientes");
+  public int Id { get; set; }
+  bool _loading = false;
+  public ClienteDto? Cliente = new ClienteDto();
+  private ElementReference InputCnpjRef;
+  void VoltarParaClientes() {
+    NavigationManager.NavigateTo("/");
   }
-  @*
-  protected override void OnParametersSet() {
-    if (!string.IsNullOrEmpty(Data)) {
-      var json = Uri.UnescapeDataString(Data);
-      Cliente = System.Text.Json.JsonSerializer.Deserialize<ClienteDto>(json);
-    } else {
-      Cliente = new ClienteDto()
+  
+  protected override async Task OnInitializedAsync()
+  {
+    if (Id > 0)
+    {
+      await GetClienteAsync();
     }
-  }*@
+    else
+    {
+      Cliente.DataFundacao = DateOnly.FromDateTime(DateTime.Today.AddDays(-1));
+      Cliente.Ativo = true;
+    }
+  }
+  
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    if (firstRender)
+    {
+      await JS.InvokeVoidAsync("masks", InputCnpjRef, "cnpj");
+    }
+  }
+  
+  private async Task GetClienteAsync()
+  {
+    try
+    {
+      Cliente = await ClienteService.GetClienteAsync(Id);
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao carregar o cliente: {ex.Message}");
+    }
+  }
+  
+  private async Task SaveCliente()
+  {
+    if (Cliente.Id > 0)
+    {
+      await UpdateClienteAsync();
+    }
+    else
+    {
+      await AddClienteAsync();
+    }
+  }
+  
+  private async Task AddClienteAsync()
+  {
+    try
+    {
+      _loading = true;
+      await ClienteService.AddClienteAsync(Cliente);
+      NotificationService.ShowNotification("Registro salvo com sucesso!", "text-bg-success");
+      VoltarParaClientes();
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao salvar cliente: {ex.Message}");
+    }
+    finally
+    {
+      _loading = false;
+    }
+  }
+  
+  private async Task UpdateClienteAsync()
+  {
+    try
+    {
+      _loading = true;
+      JS.InvokeVoidAsync("console.log", Cliente);
+      await ClienteService.UpdateClienteAsync(Cliente);
+      NotificationService.ShowNotification("Registro atualizado com sucesso!", "text-bg-success");
+      VoltarParaClientes();
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao atualizar cliente: {ex.Message}");
+    }
+    finally
+    {
+      _loading = false;
+    }
+  }
 }

@@ -2,7 +2,7 @@ namespace SharedModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-[Table("Cliente")]
+[Table("cliente")]
 public class Cliente
 {
     [Key]
@@ -22,7 +22,7 @@ public class Cliente
 
     [Column("cli_data_fundacao")]
     [Required]
-    public DateTime DataFundacao { get; set; }
+    public DateOnly DataFundacao { get; set; }
 
     [Column("cli_ativo")]
     [Required]

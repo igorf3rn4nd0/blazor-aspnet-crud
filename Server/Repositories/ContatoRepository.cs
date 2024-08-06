@@ -6,7 +6,7 @@ namespace Server.Repositories
 {
     public interface IContatoRepository
     {
-        Task<IEnumerable<Contato>> GetAllContatosAsync();
+        Task<IEnumerable<Contato>> GetContatosByClienteIdAsync(int idCliente);
         Task<Contato> GetContatoByIdAsync(int id);
         Task AddContatoAsync(Contato contato);
         Task UpdateContatoAsync(Contato contato);
@@ -22,9 +22,11 @@ namespace Server.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Contato>> GetAllContatosAsync()
+        public async Task<IEnumerable<Contato>> GetContatosByClienteIdAsync(int idCliente)
         {
-            return await _context.Set<Contato>().ToListAsync();
+            return await _context.Set<Contato>()
+                .Where(c => c.IdCliente == idCliente)
+                .ToListAsync();
         }
 
         public async Task<Contato> GetContatoByIdAsync(int id)

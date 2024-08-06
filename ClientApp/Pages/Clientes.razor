@@ -1,15 +1,22 @@
-﻿@page "/clientes"
+﻿@page "/"
 @using ClientApp.Services
 @using SharedModels
-
+@using ClientApp.Components
 @inject ClienteService ClienteService
 @inject NavigationManager navigationManager
+@inject NotificationService NotificationService
 
 <h1>Clientes</h1>
 
-@if (clientes == null || !clientes.Any())
+@if (_loading)
 {
     <p>Carregando clientes...</p>
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+} else if (_clientes == null || !_clientes.Any())
+{
+    <p>Nenhum regitro encontrado.</p>
 }
 else
 {
@@ -20,23 +27,43 @@ else
                 <th>CNPJ</th>
                 <th>Data de Fundação</th>
                 <th>Ativo</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var cliente in clientes)
+            @foreach (var cliente in _clientes)
             {
                 <tr>
                     <td>@cliente.Nome</td>
-                    <td>@cliente.Cnpj</td>
+                    <td>@FormatarCnpj(cliente.Cnpj)</td>
                     <td>@cliente.DataFundacao.ToShortDateString()</td>
                     <td>@(cliente.Ativo ? "Sim" : "Não")</td>
+                    <td>
+                        <i class="material-icons text-primary" style="cursor: pointer" @onclick="() => IrParaDetalhesCliente(cliente.Id)">contacts</i>
+                    </td>
+                    <td>
+                        <i class="material-icons text-secondary" style="cursor: pointer" @onclick="() => EditarCliente(cliente.Id)">edit</i>
+                    </td>
+                    <td>
+                        <i class="material-icons" style="cursor: pointer; color: red" @onclick="() => ShowModalExcluir(cliente.Id)">delete</i>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+    <Modal @ref="_modalRef" Title="Excluir Cliente">
+        <BodyContent>
+            <p>Confirma a exclusão do cliente selecionado?</p>
+        </BodyContent>
+        <FooterContent>
+            <button class="btn btn-link" @onclick="Cancel">Cancelar</button>
+            <button class="btn btn-primary" @onclick="Confirm">Confirmar</button>
+        </FooterContent>
+    </Modal>
 }
-
-<button class="btn btn-primary d-flex align-items-center position-fixed p-3" style="bottom: 20px; right: 20px; border-radius: 20px;" @onclick="Navigate">
+<button class="btn btn-primary d-flex align-items-center position-fixed p-3" style="bottom: 20px; right: 20px; border-radius: 20px;" @onclick="NovoCliente">
     <span class="d-none d-sm-inline me-2">Novo </span>
     <i class="material-icons">add</i>
 </button>
@@ -45,27 +72,91 @@ else
 
 @code {
 
-    private IEnumerable<ClienteDto>? clientes;
-
+    private List<ClienteDto> _clientes = new List<ClienteDto>();
+    private Modal _modalRef;
+    private int _idClienteExcluir;
+    private bool _loading;
+    
     protected override async Task OnInitializedAsync()
     {
-        await CarregarClientesAsync();
+        await GetClientesAsync();
     }
 
-    private async Task CarregarClientesAsync()
+    private async Task GetClientesAsync()
     {
+        _clientes.Clear();
         try
         {
-            clientes = await ClienteService.GetClientesAsync();
+            _loading = true;
+            List<ClienteDto>? clientes = await ClienteService.GetClientesAsync();
+            if (clientes != null)
+            {
+                foreach (ClienteDto cliente in clientes)
+                {
+                    _clientes.Add(cliente); 
+                }; 
+            }
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erro ao carregar clientes: {ex.Message}");
+            NotificationService.ShowNotification($"Erro ao carregar clientes: {ex.Message}");
+        }
+        finally
+        {
+            _loading = false;
+            StateHasChanged();
         }
     }
 
-    void Navigate()
+    void IrParaDetalhesCliente(int id)
     {
-        navigationManager.NavigateTo("/Cliente");
+        navigationManager.NavigateTo($"/ClienteDetalhes/{id}");
+    }
+    
+    void EditarCliente(int id)
+    {
+        navigationManager.NavigateTo($"/Cliente/{id}");
+    }
+    
+    void NovoCliente()
+    {
+        navigationManager.NavigateTo("/Cliente/0");
+    }
+
+    private async Task DeleteClienteAsync(int idCliente)
+    {
+        try
+        {
+            await ClienteService.DeleteClienteAsync(idCliente);
+            NotificationService.ShowNotification($"Registro excluído com sucesso!", "text-bg-success");
+            await GetClientesAsync();
+        }
+        catch (Exception ex)
+        {
+            NotificationService.ShowNotification($"Erro ao excluir cliente: {ex.Message}");
+        }
+    }
+    
+    private async Task ShowModalExcluir(int id)
+    {
+        _idClienteExcluir = id;
+        await _modalRef.Open();
+    }
+
+    private void Confirm()
+    {
+        _ = DeleteClienteAsync(_idClienteExcluir);
+        _modalRef.Close();
+    }
+    
+    private void Cancel()
+    {
+        _modalRef.Close();
+    }
+    
+    public string FormatarCnpj(string cnpj)
+    {
+        if (string.IsNullOrWhiteSpace(cnpj)) return string.Empty;
+        return Convert.ToUInt64(cnpj).ToString(@"00\.000\.000\/0000\-00");
     }
 }

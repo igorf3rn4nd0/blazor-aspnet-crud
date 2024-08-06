@@ -1,0 +1,191 @@
+﻿@page "/ClienteDetalhes/{id:int}"
+@using ClientApp.Components
+@using ClientApp.Services
+@using SharedModels
+@inject NavigationManager NavigationManager
+@inject ClienteService ClienteService
+@inject ContatoService ContatoService
+@inject NotificationService NotificationService
+<PageTitle>Cliente</PageTitle>
+
+@if (Cliente != null && Cliente.Id > 0)
+{
+  
+<div class="row justify-content-between align-items-center">
+  <div class="col-auto">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <button class="btn btn-link" @onclick="NavigateToList" style="border-radius: 20px;">
+          <i class="material-icons">arrow_back</i>
+        </button> 
+      </div>
+      <div class="col-auto position-relative">
+        <h1>
+          @Cliente.Nome
+        </h1>
+        <h5 class="position-absolute top-0 start-100 translate-middle badge rounded-pill mx-3 @(Cliente.Ativo ? "bg-primary" : "bg-secondary")">
+          @if (Cliente.Ativo)
+          {
+          <span>Ativo</span>
+          }
+          else
+          {
+          <span>Inativo</span>
+          }
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form class="row mt-1 px-3 g-3">
+  <div class="col-md-6">
+    <label for="cnpj-mask" class="form-label">CNPJ</label>
+    <p class="mt-1">@FormatarCnpj(Cliente.Cnpj)</p>
+  </div>
+  <div class="col-md-6">
+    <label for="inputDataFundacao" class="form-label">Data da Fundação</label>
+    <input type="date" class="form-control-plaintext" id="inputDataFundacao" readonly @bind="Cliente.DataFundacao">
+  </div>
+  <div class="row mt-4 justify-content-between">
+    <div class="col-auto">
+      <h4>Contatos</h4>
+    </div>
+    <div class="col-auto">
+      @if (_loading)
+      {
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div> 
+      }
+      else
+      {
+        <button class="btn" style="bottom: 20px; right: 20px; border-radius: 20px;" @onclick:preventDefault="true" @onclick="NovoContato">
+          <i class="material-icons">add</i>
+        </button>
+      }
+    </div>
+  </div>
+  <hr>
+  @if (_contatos != null && _contatos.Any()) {
+    <div class="col-12">
+      <ListaContatos Contatos="_contatos" OnExcluirContato="ShowModalExcluir" OnEditarContato="EditarContato"/>
+    </div>
+  }
+</form>
+<Modal @ref="_modalRef" Title="Excluir Contato">
+  <BodyContent>
+    <p>Confirma a exclusão do contato selecionado?</p>
+  </BodyContent>
+  <FooterContent>
+    <button class="btn btn-link" @onclick="Cancel">Cancelar</button>
+    <button class="btn btn-primary" @onclick="Confirm">Confirmar</button>
+  </FooterContent>
+</Modal>
+}
+else
+{
+  <p>Carregando cliente...</p>
+}
+
+@code {
+  [Parameter]
+  public int Id { get; set; }
+  public int IdContatoExluir { get; set; }
+  bool _loading = false;
+  public ClienteDto? Cliente { get; set; } = new ClienteDto();
+  public List<ContatoDto> _contatos = new List<ContatoDto>();
+  private Modal _modalRef;
+  void NavigateToList() {
+    NavigationManager.NavigateTo("/");
+  }
+  
+  protected override async Task OnInitializedAsync()
+  {
+    if (Id > 0)
+    {
+      await GetClienteAsync();
+      await GetContatosByClienteAsync();
+    }
+  }
+  
+  private async Task GetClienteAsync()
+  {
+    try
+    {
+      Cliente = await ClienteService.GetClienteAsync(Id);
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao carregar o cliente: {ex.Message}");
+    }
+  }
+  
+  private async Task GetContatosByClienteAsync()
+  {
+    _loading = true;
+    _contatos.Clear();
+    try
+    {
+      List<ContatoDto>? contatos = await ContatoService.GetContatosByClienteAsync(Id);
+      if (contatos != null)
+      {
+        foreach (ContatoDto contato in contatos)
+        {
+          _contatos.Add(contato); 
+        }; 
+      }
+
+    }
+    finally
+    {
+      _loading = false;
+      StateHasChanged();
+    }
+  }
+  
+  void NovoContato() {
+    NavigationManager.NavigateTo($"/Contato/{0};{Id}");
+  }
+  
+  void EditarContato(int contatoId) {
+    NavigationManager.NavigateTo($"/Contato/{contatoId};{Id}");
+  }
+  
+  private async Task DeleteContatoAsync(int idContato)
+  {
+    try
+    {
+      await ContatoService.DeleteContatoAsync(idContato);
+      NotificationService.ShowNotification($"Registro excluído com sucesso!", "text-bg-success");
+      await GetContatosByClienteAsync();
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao excluir o contato: {ex.Message}");
+    }
+  }
+  
+  private async Task ShowModalExcluir(int id)
+  {
+    IdContatoExluir = id;
+    await _modalRef.Open();
+  }
+  
+  private void Confirm()
+  {
+    _ = DeleteContatoAsync(IdContatoExluir);
+    _modalRef.Close();
+  }
+    
+  private void Cancel()
+  {
+    _modalRef.Close();
+  }
+  
+  public string FormatarCnpj(string cnpj)
+  {
+    if (string.IsNullOrWhiteSpace(cnpj)) return string.Empty;
+    return Convert.ToUInt64(cnpj).ToString(@"00\.000\.000\/0000\-00");
+  }
+}

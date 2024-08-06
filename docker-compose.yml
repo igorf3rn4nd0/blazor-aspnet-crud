@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Server/Dockerfile
+    ports:
+      - "5000:80"
+  
+  clientapp:
+    build:
+      context: .
+      dockerfile: ClientApp/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2684ig
+      - POSTGRES_DB=gestao_contatos
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

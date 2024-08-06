@@ -50,6 +50,7 @@ public class ClienteService : IClienteService
     public async Task AddClienteAsync(ClienteDto clienteDto)
     {
         var cliente = _mapper.Map<Cliente>(clienteDto);
+        cliente.Cnpj = cliente.Cnpj = new string(cliente.Cnpj.Where(char.IsDigit).ToArray());;
         await _clienteRepository.AddClienteAsync(cliente);
     }
 

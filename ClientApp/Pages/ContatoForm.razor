@@ -1,0 +1,163 @@
+﻿@page "/Contato/{id:int};{idCliente:int}"
+@using ClientApp.Services
+@using SharedModels
+@inject NavigationManager NavigationManager
+@inject ContatoService ContatoService
+@inject IJSRuntime JS
+@inject NotificationService NotificationService
+
+<PageTitle>Contato</PageTitle>
+
+<EditForm Model="_contato" OnValidSubmit="SaveContato">
+  <div class="row justify-content-between align-items-center">
+    <div class="col-auto">
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <button class="btn btn-link" @onclick:preventDefault="true" @onclick="VoltarParaCliente" style="border-radius: 20px;">
+            <i class="material-icons">arrow_back</i>
+          </button>
+        </div>
+        <div class="col-auto">
+          @if (Id == 0)
+          {
+          <h1>Novo Contato</h1>
+          }
+          else
+          {
+          <h1>Editar Contato</h1>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary d-flex align-items-center" style="border-radius: 20px;">
+        @if (_loadingSave)
+        {
+        <span class="d-none d-sm-inline me-2">Salvando </span>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        }
+        else
+        {
+        <span class="d-none d-sm-inline me-2">Salvar </span>
+        <i class="material-icons">save</i>
+        }
+      </button>
+    </div>
+  </div>
+  <DataAnnotationsValidator></DataAnnotationsValidator>
+  <form class="row mt-1 g-3">
+    <div class="col-12">
+      <label for="input-nome" class="form-label">Nome</label>
+      <input type="text" class="form-control" id="input-nome" @bind="_contato.Nome">
+      <ValidationMessage For="() => _contato.Nome"></ValidationMessage>
+    </div>
+    <div class="col-md-6">
+      <label for="input-email" class="form-label">E-mail</label>
+      <input type="text" class="form-control" id="input-email" @bind="_contato.Email">
+      <ValidationMessage For="() => _contato.Email"></ValidationMessage>
+    </div>
+    <div class="col-md-6">
+      <label for="inputTelefone" class="form-label">Telefone</label>
+      <input @ref="InputTelRef" type="tel" class="form-control" id="inputTelefone" @bind="_contato.Telefone">
+      <ValidationMessage For="() => _contato.Telefone"></ValidationMessage>
+    </div>
+    <div class="col-md-6">
+      <label for="input-cargo" class="form-label">Cargo</label>
+      <input class="form-control" id="input-cargo" @bind="_contato.Cargo">
+      <ValidationMessage For="() => _contato.Cargo"></ValidationMessage>
+    </div>
+  </form>
+</EditForm>
+@code {
+  [Parameter]
+  public int Id { get; set; }
+  [Parameter]
+  public int IdCliente { get; set; }
+  private ContatoDto? _contato = new();
+  private bool _loadingSave = false;
+  private ElementReference InputTelRef;
+
+  void VoltarParaCliente() {
+    NavigationManager.NavigateTo($"/ClienteDetalhes/{IdCliente}");
+  }
+  
+  protected override async Task OnInitializedAsync()
+  {
+    if (Id > 0)
+    {
+      await GetContatoAsync();
+    }
+    else
+    {
+      if (_contato != null) _contato.IdCliente = IdCliente;
+    }
+  }
+  
+  protected override async Task OnAfterRenderAsync(bool firstRender)
+  {
+    await JS.InvokeVoidAsync("masks", InputTelRef, "phone");
+  }
+  
+  private async Task GetContatoAsync()
+  {
+    try
+    {
+      _contato = await ContatoService.GetContatoAsync(Id);
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao carregar o contato: {ex.Message}");
+    }
+  }
+
+  private async Task SaveContato()
+  {
+    if (_contato != null && _contato.Id > 0)
+    {
+      await UpdateContatoAsync();
+    }
+    else
+    {
+      await AddContatoAsync();
+    }
+  }
+  
+  private async Task AddContatoAsync()
+  {
+    try
+    {
+      _loadingSave = true;
+      if (_contato != null) await ContatoService.AddContatoAsync(_contato);
+      NotificationService.ShowNotification("Registro salvo com sucesso!", "text-bg-success");
+      VoltarParaCliente();
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao salvar contato: {ex.Message}");
+    }
+    finally
+    {
+      _loadingSave = false;
+    }
+  }
+  
+  private async Task UpdateContatoAsync()
+  {
+    try
+    {
+      _loadingSave = true;
+      if (_contato != null) await ContatoService.UpdateContatoAsync(_contato);
+      NotificationService.ShowNotification("Registro atualizado com sucesso!", "text-bg-success");
+      VoltarParaCliente();
+    }
+    catch (Exception ex)
+    {
+      NotificationService.ShowNotification($"Erro ao atualizar contato: {ex.Message}");
+    }
+    finally
+    {
+      _loadingSave = false;
+    }
+  }
+  
+}

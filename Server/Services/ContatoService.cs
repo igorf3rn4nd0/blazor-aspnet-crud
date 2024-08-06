@@ -15,9 +15,9 @@ public class ContatoService : IContatoService
         _mapper = mapper;
     }
 
-    public async Task<IEnumerable<ContatoDto>> GetAllContatosAsync()
+    public async Task<IEnumerable<ContatoDto>> GetContatosByClienteIdAsync(int idCliente)
     {
-        var contatos = await _contatoRepository.GetAllContatosAsync();
+        var contatos = await _contatoRepository.GetContatosByClienteIdAsync(idCliente);
         return _mapper.Map<IEnumerable<ContatoDto>>(contatos);
     }
 
@@ -36,9 +36,9 @@ public class ContatoService : IContatoService
         return UpdateContatoAsync(contatoDto);
     }
 
-    Task<IEnumerable<ContatoDto>> IContatoService.GetAllContatosAsync()
+    Task<IEnumerable<ContatoDto>> IContatoService.GetContatosByClienteIdAsync(int idCliente)
     {
-        return GetAllContatosAsync();
+        return GetContatosByClienteIdAsync(idCliente);
     }
 
     public async Task<ContatoDto> GetContatoByIdAsync(int id)
